@@ -98,6 +98,12 @@ def create_property(request):
             daleyImage = request.FILES.get('daleyImage')
             daleyPhone = request.POST.get('daleyPhone')
             price = request.POST.get('price')
+            bedroom =request.POST.get('Bedroom')
+            BikeParking =request.POST.get('BikeParking')
+            CarParking =request.POST.get('CarParking')
+            AttachedBathroom =request.POST.get('AttachedBathroom')
+            Kitchen =request.POST.get('Kitchen')
+
             
             print(propertyImage1,propertyImage2, propertyImage3, propertyName,location, propertyType,daleyName,daleyImage,daleyPhone,price)
             add_data = properties(img1=propertyImage1,
@@ -109,9 +115,15 @@ def create_property(request):
                                   price=price,
                                   daley_number=daleyPhone,
                                   daley_name=daleyName,
-                                  daley_image=daleyImage)
-            # add_data.save()
-            print(add_data)
+                                  daley_image=daleyImage,
+                                  Bedroom=bedroom,
+                                  BikeParking=BikeParking,
+                                  CarParking=CarParking,
+                                  AttachedBathroom=AttachedBathroom,
+                                  Kitchen=Kitchen
+                                  )
+            add_data.save()
+            print(add_data,bedroom,CarParking,BikeParking,AttachedBathroom,Kitchen)
             return JsonResponse({'message': 'Property created successfully'}, status=201)
         except:
             return JsonResponse({'error': 'Error in fetching data'}, status=401)
